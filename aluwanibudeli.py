@@ -3,9 +3,13 @@ import pandas as pd
 import numpy as np
 from PIL import Image
 import io
+import os
 
 # Set page title
 st.set_page_config(page_title="Aluwani Budeli - Portfolio", layout="wide")
+
+# Define profile picture path
+PROFILE_PIC_PATH = "profile_pic.jpg"
 
 # Sidebar Menu
 st.sidebar.title("Navigation")
@@ -14,13 +18,38 @@ menu = st.sidebar.radio(
     ["Profile", "Publications", "Vlog", "Contact"],
 )
 
+# Function to load profile picture
+def load_profile_picture():
+    if os.path.exists(PROFILE_PIC_PATH):
+        return Image.open(PROFILE_PIC_PATH)
+    return None
+
+# Function to save profile picture
+def save_profile_picture(uploaded_file):
+    if uploaded_file is not None:
+        image = Image.open(uploaded_file)
+        image.save(PROFILE_PIC_PATH)
+        return image
+    return None
+
 # Sections based on menu selection
 if menu == "Profile":
     st.title("Profile")
     
     # Profile picture upload in sidebar
     st.sidebar.header("Profile Picture")
+    
+    # Load existing profile picture
+    existing_pic = load_profile_picture()
+    
     uploaded_pic = st.sidebar.file_uploader("Upload a profile picture", type=["jpg", "jpeg", "png"])
+    
+    # Save new picture if uploaded
+    if uploaded_pic is not None:
+        current_pic = save_profile_picture(uploaded_pic)
+        st.sidebar.success("Profile picture updated successfully!")
+    else:
+        current_pic = existing_pic
     
     # Create two columns for layout: one for image, one for summary
     col1, col2 = st.columns([1, 2])
@@ -47,14 +76,21 @@ if menu == "Profile":
     • Enzyme kinetics and protein analysis"""
     
     with col1:
-        if uploaded_pic is not None:
-            # Display uploaded image
-            image = Image.open(uploaded_pic)
-            st.image(image, width=250, caption="Profile Picture")
+        if current_pic is not None:
+            # Display saved image
+            st.image(current_pic, width=250, caption="Profile Picture")
         else:
             # Placeholder image if none uploaded
             st.image("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png", 
                      width=250, caption="Upload your picture (sidebar)")
+        
+        # Add option to remove picture
+        if current_pic is not None:
+            if st.button("Remove Profile Picture"):
+                if os.path.exists(PROFILE_PIC_PATH):
+                    os.remove(PROFILE_PIC_PATH)
+                st.rerun()
+        
         st.write("")
         st.write("")
         st.markdown("### Top Skills")
