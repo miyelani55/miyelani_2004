@@ -27,7 +27,7 @@ if menu == "Profile":
     
     # Profile details
     name = "Aluwani Tshimangadzo Budeli"
-    field = {"Bachelor's Degree Biochemistry & Microbiology Graduate","Postgraduate Certificate In Education (PGCE) Graduate"}
+    field = ["Bachelor's Degree Biochemistry & Microbiology Graduate","Postgraduate Certificate In Education (PGCE) Graduate"]
     institution = "University of Venda"
     
     # Professional summary
