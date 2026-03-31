@@ -27,8 +27,11 @@ if menu == "Profile":
     
     # Profile details
     name = "Aluwani Tshimangadzo Budeli"
-    field = ["Bachelor's Degree Biochemistry & Microbiology Graduate","Postgraduate Certificate In Education (PGCE) Graduate"]
-    institution = "University of Venda"
+    courses = [
+        "Bachelor's Degree Biochemistry & Microbiology Graduate",
+        "Postgraduate Certificate In Education (PGCE) Graduate"
+    ]
+    institution = "University of Limpopo"
     
     # Professional summary
     professional_summary = """Highly motivated professional with a strong foundation in Biochemistry and Microbiology (BSc, 2024) 
@@ -59,7 +62,9 @@ if menu == "Profile":
     
     with col2:
         st.write(f"**Name:** {name}")
-        st.write(f"**Field of Study:** {field}")
+        st.write(f"**Courses Completed:**")
+        for course in courses:
+            st.write(f"  • {course}")
         st.write(f"**Institution:** {institution}")
         st.markdown("### Professional Summary")
         st.write(professional_summary)
