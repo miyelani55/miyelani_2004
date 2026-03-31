@@ -27,8 +27,8 @@ if menu == "Profile":
     
     # Profile details
     name = "Aluwani Tshimangadzo Budeli"
-    field = "Bachelor's Degree Biochemistry & Microbiology"
-    institution = "University of Venda"  # Keeping as per original but can be changed if needed
+    field = {"Bachelor's Degree Biochemistry & Microbiology Graduate","Postgraduate Certificate In Education (PGCE) Graduate"}
+    institution = "University of Venda"
     
     # Professional summary
     professional_summary = """Highly motivated professional with a strong foundation in Biochemistry and Microbiology (BSc, 2024) 
@@ -94,9 +94,6 @@ elif menu == "Publications":
             st.write("The CSV does not have a 'Year' column to visualize trends.")
     else:
         st.info("Please upload a CSV file to view publications.")
-    
-    )
-    
 
 elif menu == "Contact":
     # Add a contact section
