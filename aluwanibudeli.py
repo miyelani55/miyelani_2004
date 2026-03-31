@@ -151,10 +151,10 @@ elif menu == "Contact":
         message = st.text_area("Your Message")
         submitted = st.form_submit_button("Send")
         if submitted:
-            st.success(f"Thank you {name_input}, your message has been sent! (Demo)")
+            st.success(f"Thank you {name_input}, your message has been sent")
 
 elif menu == "Vlog":
     st.title("Vlog / Blog")
-    st.info("Vlog section coming soon! Here you can share videos, tutorials, or science outreach content.")
+    st.info("Vlog section coming soon! Here you can share videos content.")
     # Placeholder for future vlog content
-    st.write("🎥 Future content: Lab tutorials, science explainers, educational videos, and more!")
+   
